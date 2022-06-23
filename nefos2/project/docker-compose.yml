@@ -1,0 +1,199 @@
+version:  '3.8'
+services:
+  mongo-express:
+    container_name: mongo-express
+    image: mongo-express:0.54
+    restart: always
+    ports:
+     - 8081:8081
+    networks: 
+     - net1
+    environment: 
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: devpass
+      ME_CONFIG_MONGODB_SERVER: mongoDB
+      ME_CONFIG_BASICAUTH_USERNAME: admin
+      ME_CONFIG_BASICAUTH_PASSWORD: pass
+    depends_on: 
+     - mongoDB
+  mongoDB:
+    container_name: mongo1
+    image: mongo:latest
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: devpass
+      MONGO_INITDB_DATABASE: nefosproject
+    networks: 
+      - net1
+    ports: 
+     - 27018:27017
+    volumes:
+      - mymongoDB_data_container:/data/db
+  php_logic:
+    container_name: php_logic
+    image: php:8.0-rc-apache
+    volumes:
+      - ./webdev:/var/www/html
+    ports: 
+      - 80:80
+    expose: 
+      - 3051
+    networks: 
+      - net1
+    depends_on: 
+      - mongoDB
+  nefosservice:
+    build: 
+      context: ./data_service_api
+      dockerfile: Dockerfile
+    hostname: nefosservice
+    container_name: dataStorage
+    volumes: 
+      - ./data_service_api:/var/www/html
+    networks: 
+      - net1
+    ports:
+      - 3050:80
+  orion:
+    image: fiware/orion:2.5.0
+    hostname: orion
+    container_name: fiware-orion
+    depends_on:
+      - mongo-db
+    networks:
+      - net1
+    expose: 
+      - 1026
+    ports:
+      - 1026:1026
+    command: -dbhost mongo-db -logLevel DEBUG -noCache
+    healthcheck:
+      test: cult --fail -s http://orion:1026/version || exit 1
+  mongo-db:
+    image: mongo:latest
+    hostname: mongo-db
+    container_name: db-mongo
+    expose:
+      - 27017
+    ports: 
+      - 27017:27017
+    networks: 
+      - net1
+    volumes:
+      - mongo-db:/data/db
+    healthcheck:
+      test: |
+        hhost=`hostname --ip-address || echo '127.0.0.1'`; 
+        mongo --quiet $host/test --eval 'quit(db.runCommand({ ping: 1 }).ok ? 0 : 2)' && echo 0 || echo 1 
+  keyrock:
+    image: fiware/idm
+    container_name: fiware-keyrock
+    hostname: keyrock
+    depends_on: 
+      - mysql-db
+    ports: 
+      - 3005:3005
+      - 3443:3443
+    networks:
+      net1:
+        ipv4_address: 172.18.1.5
+    environment: 
+      - IDM_DB_HOST=mysql-db
+      # idm
+      - IDM_DB_PASS=secret
+      - IDM_DB_USER=root
+      - IDM_HOST=http://localhost:3005
+      - IDM_PORT=3005
+      - IDM_HTTPS_ENABLED=false
+      - IDM_HTTPS_PORT=3443
+      - IDM_ADMIN_USER=admin
+      - IDM_ADMIN_EMAIL=admin@test.com
+      - IDM_ADMIN_PASS=1234
+    healthcheck:
+      test: curl --fail -s http://keyrock:3005/version || exit 1
+  mysql-db:
+    restart: always
+    image: mysql:5.7
+    hostname: mysql-db
+    container_name: db-mysql
+    expose:
+      - 3306
+    ports:
+      - 3306:3306
+    networks:
+      net1:
+        ipv4_address: 172.18.1.6
+    environment:
+    # root 123
+      - "MYSQL_ROOT_PASSWORD=secret"
+      - "MYSQL_ROOT_HOST=172.18.1.5"
+    volumes:
+      - mysql-db:/var/lib/mysql
+  orion-proxy:
+    image: fiware/pep-proxy
+    container_name: fiware-orion-proxy
+    hostname: orion-proxy
+    networks: 
+      net1:
+        ipv4_address: 172.18.1.10
+    depends_on: 
+      - keyrock
+    ports: 
+      - 1027:1027
+    expose: 
+      - 1027
+    environment: 
+      - PEP_PROXY_APP_HOST=orion
+      - PEP_PROXY_APP_PORT=1026
+      - PEP_PROXY_PORT=1027
+      - PEP_PROXY_IDM_HOST=keyrock
+      - PEP_PROXY_HTTPS_ENABLED=false
+      - PEP_PROXY_AUTH_ENABLED=false
+      - PEP_PROXY_IDM_SSL_ENABLED=false
+      - PEP_PROXY_IDM_PORT=3005
+      - PEP_PROXY_APP_ID=aeed9e7a-c4ee-48cb-b22a-a560ded02e1b
+      - PEP_PROXY_USERNAME=pep_proxy_2a850b49-a1e9-4f4e-8e39-7ace9948b062
+      - PEP_PASSWORD=pep_proxy_b744f71f-cb0f-421d-916a-fdc8d81a0d35
+      - PEP_PROXY_PDP=idm
+      - PEP_PROXY_MAGIC_KEY=1234
+  nefosservice-proxy:
+    image: fiware/pep-proxy
+    container_name: fiware-nefosservice-proxy
+    hostname: nefosservice-proxy
+    networks: 
+      net1:
+        ipv4_address: 172.18.1.15
+    depends_on: 
+      - keyrock
+    ports: 
+      - 3051:3051
+    expose: 
+      - 3051
+    environment: 
+      - PEP_PROXY_APP_HOST=nefosservice
+      - PEP_PROXY_APP_PORT=80
+      - PEP_PROXY_PORT=3051
+      - PEP_PROXY_IDM_HOST=keyrock
+      - PEP_PROXY_HTTPS_ENABLED=false
+      - PEP_PROXY_AUTH_ENABLED=false
+      - PEP_PROXY_IDM_SSL_ENABLED=false
+      - PEP_PROXY_IDM_PORT=3005
+      - PEP_PROXY_APP_ID=aeed9e7a-c4ee-48cb-b22a-a560ded02e1b
+      - PEP_PROXY_USERNAME=pep_proxy_2a850b49-a1e9-4f4e-8e39-7ace9948b062
+      - PEP_PASSWORD=pep_proxy_b744f71f-cb0f-421d-916a-fdc8d81a0d35
+      - PEP_PROXY_PDP=idm
+      - PEP_PROXY_MAGIC_KEY=1234
+
+
+
+networks:
+  net1:
+   ipam:
+      config:
+        - subnet: 172.18.1.0/24
+
+volumes:
+  mymongoDB_data_container:
+  mongo-db: ~
+  mysql-db: ~
+

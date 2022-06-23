@@ -1,0 +1,798 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+
+/*------------------ MAIN ----------------------*/
+* {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  outline: 0;
+  font-size: 100%;
+  vertical-align: baseline;
+  background: transparent;
+}
+
+.material-icons.md-18 { font-size: 21px; }
+.material-icons.md-25 { font-size: 25px; }
+.material-icons.md-27 { font-size: 40px; }
+
+
+
+body {
+  font-family: 'Montserrat';
+  background-color: white;
+  /*background-image: url('../images/vertigo.png');*/
+}
+
+.success {
+  color: #1c9018;
+  font-size: 30px;
+  font-weight: 700;
+  text-align:center;
+}
+
+.failed {
+  color: rgb(187, 8, 8);
+  font-size: 30px;
+  font-weight: 700;
+  text-align:center;
+}
+
+input[type=text], input[type=password], input[type=email] {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #bbbfca;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type="search"] {
+  font-family: FontAwesome;
+  font-size: 20px;
+}
+
+input[type=radio] {
+  padding-right: 60%;
+  text-align: center;
+}
+
+.Navbar {
+  background-color: #ffffff;
+  list-style: none;
+  text-align: right;
+  padding: 20px 0 20px 0;
+}
+
+.Navbar > li {
+  display: inline-block;
+  padding: 0 25px 0 25px;
+}
+
+.Navbar > li > a {
+  text-decoration: none;
+  float: center;
+  color: #495464;
+}
+
+.Navbar > li > a:hover {
+  color: #bbbfca;
+}
+
+.logo {
+  color: #495464;
+  float: left;
+  padding-left: 2%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.logo > a {
+  text-decoration: none;
+  color: black;
+}
+
+.banner {
+  width: 100%;
+  display: block;
+}
+
+.banner > .banner-image {
+  width: 100%;
+  display: block;
+}
+
+.Heading {
+  text-align: center;
+  font-size: 25px;
+  color: #495464;
+  margin: 50px 0 50px 0;
+}
+
+.services {
+  width: 1333px;
+  margin: 0 auto;
+}
+
+.service1 {
+  width: 298px;
+  border: 1px solid #495464;
+  margin: 20px 10px;
+  padding: 0 5px;
+  float: left;
+  background-color: #e8e8e8;
+}
+
+.service1 > p {
+  font-size: 14px;
+  color: #495464;
+  max-width: 250px;
+  padding-bottom: 10px;
+}
+
+.service1 > h1 {
+  font-size: 16px;
+  font-weight: bold;
+  background-color: #495464;
+  color: #f4f4f2;
+  padding: 10px 0;
+  margin: 0 -6px;
+}
+
+.nonav {
+  float: right;
+  padding-right: 10px;
+}
+
+.image-serv {
+  max-width: 200px;
+  margin: 15px 0 0 0;
+}
+
+.image-serv:hover {
+  opacity: 0.4;
+  max-width: 200px;
+  margin-top: 15px;
+}
+
+/*---------------- INDEX.PHP -----------------------*/
+
+.signuph2 {
+  padding: 30px 0 20px 0;
+  color: white;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: left;
+  margin-top: 0;
+}
+
+.signupdiv {
+  margin-top: 30px;
+  margin-left: 13%;
+  width: 20%;
+  
+}
+
+.signuplabel {
+  color: white;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.signupdiv .signupinp {
+  border-width: 3px;
+  border-color: white;
+  color: white;
+}
+
+.signupbutton {
+  color: white;
+  font-weight: 700;
+  font-size: 30px;
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+}
+
+.signupbutton:hover {
+  color: #bbbfca;
+}
+
+.signupradio {
+  text-align: center;
+  font-size: 12px;
+  color: white;
+}
+
+/*------------------------ WELCOME.PHP ------------*/
+
+/*---------------------DROPDOWN MENU---------------*/
+
+.navbar {
+  overflow: hidden;
+  background-color: #ffffff;
+  padding-left: 55%;
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color: #495464;
+  text-align: center;
+  padding: 0px 16px;
+  text-decoration: none;
+}
+
+.dropdown {
+  float: left;
+  overflow: hidden;
+}
+
+.dropdown .dropbtn {
+  font-size: 16px;
+  border: none;
+  outline: none;
+  color: #495464;
+  padding: 0px 16px;
+  background-color: inherit;
+  font-family: inherit; /* Important for vertical align on mobile phones */
+  margin: 0; /* Important for vertical align on mobile phones */
+}
+
+.navbar a:hover {
+  color: #bbbfca;
+}
+
+.dropdown:hover .dropbtn {
+  color: #bbbfca;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  float: none;
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  text-align: left;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/*-----------------------*/
+.loggedUser {
+  color: black;
+  font-weight: bold;
+}
+
+.userIcon {
+  float: right;
+  padding-left: 2px;
+  padding-right: 2%;
+}
+
+/*------------------------ ADMINISTRATION.PHP ------------*/
+
+.adminbody {
+  
+  width: 100%;
+  margin-top: 3%;
+}
+
+.admh1 {
+  text-align: center;
+  font-size: 25px;
+  padding: 0 0 10px 0;
+  font-weight: bold;
+  color: #495464;
+}
+
+.admh2 {
+  text-align: center;
+  color: #495464;
+  padding: 0 0 3% 0;
+}
+
+tr:nth-child(even) {background-color: #f4f4f2;}
+
+.admtable {
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 22%;
+  background-color: #f4f4f2;
+  border-collapse: collapse;
+}
+
+tr:hover {background-color: #e8e8e8;}
+
+th {
+  background-color: #495464;
+  color: #f4f4f2;
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+td {
+  border-bottom: 1px solid #ddd;
+  padding: 15px;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+.pwdtd {
+  text-align: center;
+}
+
+.btn-delete {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #f4511e;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 10px;
+  padding: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+.btn-delete span, .btn-edit span, .btn-update, .btn-cancel {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.btn-delete span:after, btn-edit span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.btn-delete:hover span {
+  padding-right: 10px;
+}
+
+.btn-delete:hover span:after, .btn-edit:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.btn-edit {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #206a5d;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 10px;
+  padding: 5px;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+/******************* CHANGEINFO *********************/
+
+.changeinfobody {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 5%;
+  width: 20%;
+}
+
+.uplabels {
+  font-weight: 550;
+  color: #495464;
+}
+
+.form-group1{
+  padding-top: 20px;
+  margin-bottom: 10%;
+}
+
+.btn-update {
+  background-color: #495464;
+  color: #FFFFFF;
+  padding: 15px;
+  font-size: 10px;
+  font-size: 20px;
+  border: none;
+}
+
+.btn-cancel {
+  padding: 15px;
+  background-color: #bbbfca;
+  color: white;
+  margin: 3%;
+  text-decoration: none;
+  font-size: 20px;
+  border: none;
+}
+
+/*******************OWNER.PHP **************/
+
+
+.browse-body {
+  background-color: white;
+  margin-top: 2%;
+  margin-left: 2%;
+  font-size: 30px;
+}
+
+.add-introh1 {
+  background-color: #222831;
+  padding: 30px 30px 10px 2%;
+  font-size: 30px;
+  color:white;
+}
+
+.brline {
+  border: 1px solid black;
+  border-radius: 1px;
+  width: 228px;
+}
+
+.addmov-btn {
+  display: inline-block;
+  border-radius: 4px;
+  background-color: #56c361;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 20px;
+  padding: 15px;
+  width: 140px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 20px 20px 20px 2%;
+}
+
+.addmov-btn span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.addmov-btn span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -20px;
+  transition: 0.5s;
+}
+
+.addmov-btn:hover span {
+  padding-right: 25px;
+}
+
+.addmov-btn:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.addmov-btn span a {
+  text-decoration: none;
+  color: white;
+}
+
+.hrlineo {
+  border: 1px solid black;
+  border-radius: 1px;
+  width: 160px;
+}
+
+.changeinfobody2 {
+  text-align: center;
+  width: 350px;
+  height: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3%;
+}
+
+
+/****** CREATE MOVIE MODAL *****/
+.btn-modal {
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: rgba(0, 0, 0, 0.7);
+  position: absolute;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.modal-content {
+  width: 350px;
+  height: 600px;
+  background-color: white;
+  border-radius: 4px;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+}
+
+.modal-inputs {
+  width: 50%;
+  display: block;
+  margin: 15px auto;
+}
+
+.modal-inputsdate {
+  width: 50%;
+  font-size: 20px;
+  display: block;
+  margin: 15px auto;
+}
+
+.close-tag {
+  position: absolute;
+  top: 0;
+  right: 14px;
+  font-size: 42px;
+  transform: rotate(45deg);
+  cursor: pointer;
+}
+
+.mov-lab {
+  align-self: left;
+  color: #495464;
+  font-weight: 700;
+  padding-top: 10px;
+  display: block;
+}
+
+
+.mov-img{
+  margin-bottom: 20px;
+}
+
+.btn-addmov{
+  background-color: #495464;
+  color: #FFFFFF;
+  padding: 15px;
+  font-size: 10px;
+  font-size: 20px;
+  border: none;
+  margin-top: 30px;
+}
+
+.movform {
+  height: 540px;
+}
+
+/**********************************/
+
+/************************ MOVIE.PHP ******************/
+
+.browsebody .movies-body {
+  margin-left:2%;
+  margin-right:2%;
+}
+
+.movies-body .movie-border {
+  float: left;
+  margin: 2% 2% 1% 2%; 
+  border: solid #000;
+  border-width: 3px 3px;
+  width: 12%;
+  height: 15%;
+  background-color: #e8e8e8;
+}
+
+
+
+.movie-item {
+  text-align: center;
+  width: 100%;
+  border-bottom: solid;
+  border-width: 1px;
+  padding-top: 4%;
+  padding-bottom: 4%;
+}
+
+.movie-itemt {
+  text-align: center;
+  width: 100%;
+  border-bottom: solid;
+  border-width: 1px;
+  padding-top: 4%;
+  padding-bottom: 4%;
+  background-color: #495464;
+}
+
+.mtitle-textt {
+  color: white;
+}
+
+.movie-item hr {
+  border: solid #000;
+  border-width: 1px;
+  width: 100%;
+}
+
+.favicon {
+  margin-left: auto;
+  margin-right: auto;
+  cursor: pointer;
+}
+
+.formfav {
+  text-align: center;
+}
+
+.fav-btn {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.browseHs {
+  margin-top: 2%;
+}
+
+/**********SEARCHBAR*********/
+
+.outerbox {
+  margin-left: 2%;
+  margin-top: 1%;
+  display: inline;
+}
+
+.outerbox .insidebox {
+  width: 35%;
+  margin-left: 2%;
+  display: inline;
+  
+}
+
+.outerbox .insidebox .srch {
+  background: transparent;
+  border: none !important;
+  margin-left: 2%;
+  font-size:0;
+}
+
+.outerbox .insidebox .srf {
+  margin-left: 2%;
+  margin-right: 2%;
+  width: 16%;
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.outerbox .insidebox .param {
+  margin-left: 2%;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.outerbox .insidebox .dateinp {
+  font-size: 20px;
+}
+
+.outerbox .insidebox  .datelabl {
+  margin-left: 2%;
+  font-weight: 700;
+  margin-right: 1%;
+}
+/************************ FAVORITES.PHP **************/
+
+.brlineh {
+  border: 1px solid black;
+  border-radius: 1px;
+  width: 247px;
+}
+
+
+/**********BACKGROUNDS*********/
+
+.backim {
+  background-image: url('../images/star5.jpg');
+  height: 925px;
+  background-attachment: fixed!important;
+  overflow:hidden;
+}
+
+.backindex {
+  background-image: url('../images/interstellar.jpg');
+  height: 925px;
+  margin-top: 0;
+  background-attachment: fixed!important;
+  overflow:hidden;
+}
+
+.backown {
+  background-image: url('../images/birdman.jpg');
+  height: 925px;
+  margin-top: 0;
+  background-attachment: fixed!important;
+  overflow:hidden;
+}
+
+.backadm {
+  background-image: url('../images/tr.jpg');
+  height: 925px;
+  margin-top: 0;
+  background-attachment: fixed!important;
+  overflow:hidden;
+}
+
+.backadm .changeinfobody .form-control {
+  color: white;
+  border-width: 3px;
+  border-color: white;
+}
+
+/*********************************ALERTS ON WELCOME.PHP********************************************/
+
+.subAlertdiv {
+  
+  background-color: #f1f3f8;
+  border: solid;
+  border-radius: 5px;
+  border-width: 0.5px;
+  border-color: black;
+  margin: 20px 20% 50px 20%;
+  padding: 10px;
+  width: auto;
+}
+
+.dot {
+  height: 8px;
+  width: 8px;
+  margin-right: 7px;
+  background-color: #393b44;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.subAlerthead {
+  text-align: center;
+  color: #393b44;
+  font-size: 18px;
+  padding: 10px;
+}
+
+section .alertContent {
+ height: auto;
+ width: auto;
+}
+
+section.alertContent table td {
+  text-align: center;
+  border:  hidden;
+  width: 50%;
+}
+
+.alertDates {
+  font-weight: 600;
+}
+
+.subs {
+  text-align: center;
+  font-size: 19px;
+  color: #393b44;
+  margin: 20px 0 50px 0;
+}
